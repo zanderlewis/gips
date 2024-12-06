@@ -1,0 +1,1 @@
+<img src="/images/gipslogo.png" alt="GIPS Logo" class="h-20 w-auto lg:h-24">
