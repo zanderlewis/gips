@@ -9,13 +9,7 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/new-assignment', function (Request $request) {
     $assignment = new \App\Models\Assignments();
-    // Smallest prime exponent from the database
-    $assignment->exponent = \App\Models\Primes::orderBy('value', 'asc')->first()->value;
-    // Check if this assignment already has a user
-    while (\App\Models\Assignments::where('exponent', $assignment->exponent)->where('user_id', $request->user()->id)->exists()) {
-        // If it does, get the next prime
-        $assignment->exponent = \App\Models\Primes::where('value', '>', $assignment->exponent)->orderBy('value', 'asc')->first()->value;
-    }
+    $assignment->exponent = 2; // Placeholder value
     $assignment->completed = false;
     $assignment->user_id = $request->user()->id;
     $assignment->save();
@@ -34,8 +28,15 @@ Route::post('/submit-assignment', function (Request $request) {
     $assignment = \App\Models\Assignments::find($request->input('assignment_id'));
     $assignment->completed = true;
     $assignment->save();
-    // Delete exponent from primes table
-    $prime = \App\Models\Primes::where('value', $assignment->exponent)->first();
-    $prime->delete();
     return $assignment;
 })->middleware('auth:sanctum');
+
+Route::post('/heartbeat', function (Request $request) {
+    // Get exponent of the assignment, if not assigned, send data back
+    // having the program drop the assignment and get a new one.
+    $assignment = \App\Models\Assignments::where('user_id', $request->user()->id)->where('completed', false)->first();
+    if ($assignment === null) {
+        return response()->json(['message' => 'No assignment found'], 404);
+    }
+    return response()->json(['message' => 'Success'], 200);
+});
