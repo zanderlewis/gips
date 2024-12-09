@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('assignments') }}" :active="request()->routeIs('assignments')">
                         {{ __('Assignments') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('results') }}" :active="request()->routeIs('results')">
+                        {{ __('Results') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -147,6 +150,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('assignments') }}" :active="request()->routeIs('assignments')">
                 {{ __('Assignments') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('results') }}" :active="request()->routeIs('results')">
+                {{ __('Results') }}
             </x-responsive-nav-link>
         </div>
 

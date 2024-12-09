@@ -58,13 +58,12 @@
                     </section>
 
                     <section id="discover" class="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
-                        <x-card title="Discover GIPS"
-                            description="Learn about the unique properties of Wagstaff primes and how you can contribute to finding the largest ones."
-                            link="/learn-more" linkText="Learn More" />
+                        <x-card title="Discover GIPS - Wagstaff"
+                            description="Wagstaff primes are a special class of prime numbers that are used in cryptography and number theory of form (2^p + 1) / 3 where p is prime."/>
 
                         <x-card title="Contribute to Research"
                             description="Join the community of mathematicians and researchers in the quest to find the largest Wagstaff primes."
-                            link="/contribute" linkText="Contribute Now" />
+                            link="/register" linkText="Contribute Now" />
                     </section>
                 </main>
 

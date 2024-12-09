@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('exponent');
+            $table->boolean('is_prime')->default(false);
             $table->boolean('completed')->default(false);
             $table->timestamps();
         });
