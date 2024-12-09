@@ -19,6 +19,7 @@ class Assignments extends Model
         if ($num <= 1) return false;
         if ($num <= 3) return true;
         if ($num % 2 == 0 || $num % 3 == 0) return false;
+        if ($num % 5 == 0 && $num != 5) return false;
         for ($i = 5; $i * $i <= $num; $i += 6) {
             if ($num % $i == 0 || $num % ($i + 2) == 0) return false;
         }
@@ -26,13 +27,11 @@ class Assignments extends Model
     }
     
     public static function nextPrime($num) {
-        $prime = $num;
-        $found = false;
-        while (!$found) {
-            $prime++;
-            if (self::isPrime($prime)) {
-                $found = true;
-            }
+        if ($num <= 1) return 2;
+        if ($num == 2) return 3;
+        $prime = $num % 2 == 0 ? $num + 1 : $num + 2;
+        while (!self::isPrime($prime)) {
+            $prime += 2;
         }
         return $prime;
     }
