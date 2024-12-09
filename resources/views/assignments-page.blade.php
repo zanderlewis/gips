@@ -16,6 +16,7 @@
                             <div>
                                 <p class="text-lg font-semibold">{{ $assignment->exponent }}</p>
                                 <p id="assignment-{{ $assignment->id }}" class="text-sm text-gray-500"></p>
+                                <p id="expires-{{ $assignment->id }}" class="text-sm text-semibold text-red-500"></p>
                             </div>
                             <div>
                                 <a href="{{ route('assignments', $assignment) }}"
@@ -33,10 +34,16 @@
             const assignments = @json($assignments);
             assignments.forEach(assignment => {
                 const date = moment(assignment.created_at);
+                const expiryDate = moment(assignment.expiration_date);
                 const localDate = date.format('LLLL'); // Format the date as needed
+                const localExpiryDate = expiryDate.format('LLLL');
                 const pTag = document.getElementById(`assignment-${assignment.id}`);
+                const pExpiryTag = document.getElementById(`expires-${assignment.id}`);
                 if (pTag) {
                     pTag.textContent = localDate;
+                }
+                if (pExpiryTag) {
+                    pExpiryTag.textContent = `Expires: ${localExpiryDate}`;
                 }
             });
         });
