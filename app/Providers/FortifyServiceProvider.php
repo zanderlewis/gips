@@ -10,6 +10,10 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
+use App\Actions\Fortify\CreateNewUser;
+use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Actions\Fortify\UpdateUserPassword;
+use App\Actions\Fortify\ResetUserPassword;
 
 class FortifyServiceProvider extends ServiceProvider
 {
